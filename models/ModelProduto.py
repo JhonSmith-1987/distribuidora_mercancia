@@ -20,3 +20,28 @@ class ModelProduto:
             db.connection.commit()
         except Exception as ex:
             raise Exception(ex)
+
+    @classmethod
+    def mostrarProductos(cls, db):
+        try:
+            cursor = db.connection.cursor()
+            sql = 'SELECT * FROM producto'
+            cursor.execute(sql)
+            data = cursor.fetchall()
+            if data != None:
+                return data
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+
+    @classmethod
+    def eliminarProducto(cls, db, id):
+        try:
+            cursor = db.connection.cursor()
+            sql = 'DELETE FROM producto WHERE id_producto={}'.format(id)
+            cursor.execute(sql)
+            db.connection.commit()
+        except Exception as ex:
+            raise Exception(ex)
+

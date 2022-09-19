@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %}<title>Create products</title>{% endblock %}
+{% block title %}<title>Crear provedores</title>{% endblock %}
 
 {% block style %}<link rel="stylesheet" href="/static/css/style.css">{% endblock %}
 
@@ -23,41 +23,31 @@
 <div class="container">
   <div class="contenedor_formularios">
     <img src="/static/img/logo_Programming JM.png" class="img_logo">
-    <h1 class="titulos">Crear productos</h1>
-    <form action="/insertar_producto" method="POST" enctype="multipart/form-data">
+    <h1 class="titulos">Crear provedores</h1>
+    <form action="/insertar_provedor" method="POST">
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <input type="text" class="form-control" name="nombre" id="nombre">
         </div>
         <div class="form-group">
-          <label for="color">Color</label>
-          <select class="form-control" name="color" id="color">
-            <option value="blanco">Blanco</option>
-            <option value="negro">Negro</option>
-            <option value="azul">Azul</option>
-            <option value="rojo">Rojo</option>
-          </select>
+            <label for="razon_social">Razon social</label>
+            <input type="text" class="form-control" name="razon_social" id="razon_social">
         </div>
         <div class="form-group">
-          <label for="gama">Gama</label>
-          <select class="form-control" name="gama" id="gama">
-            <option value="baja">Baja</option>
-            <option value="media">Media</option>
-            <option value="alta">Alta</option>
-          </select>
+            <label for="nit">Nit</label>
+            <input type="text" class="form-control" name="nit" id="nit">
         </div>
         <div class="form-group">
-            <label for="precio_costo">Precio costo</label>
-            <input type="number" class="form-control" name="precio_costo" id="precio_costo">
+            <label for="direccion">Direccion</label>
+            <input type="text" class="form-control" name="direccion" id="direccion">
         </div>
         <div class="form-group">
-            <label for="precio_venta">Precio venta</label>
-            <input type="number" class="form-control" name="precio_venta" id="precio_venta">
+            <label for="ciudad">Ciudad</label>
+            <input type="text" class="form-control" name="ciudad" id="ciudad">
         </div>
-        <br>
         <div class="form-group">
-          <label for="file">Imagen</label>
-          <input type="file" class="form-control-file" name="file" id="file">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" name="email" id="email">
         </div>
         <br>
         <input type="submit" class="btn btn-primary" value="Ingresar">

@@ -21,14 +21,24 @@
     border-radius: 100%;
 }
 
-.nuevo_producto{
+.contenedor_formularios{
     margin-top: 50px;
     width: 50%;
     margin: auto;
 }
 
+.contenedor_tablas{
+    width: auto;
+}
+
+/* ***** botones ******** */
+
 .btn{
     display: block;
     width: auto;
     margin: auto;
+}
+
+.colores{
+    color: rgb(245, 1, 1);
 }

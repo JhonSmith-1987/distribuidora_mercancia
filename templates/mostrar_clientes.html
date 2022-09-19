@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Mostrar clientes</title>{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="/static/css/style.css">{% endblock %}
+
+
+{% block body %}
+
+<div class="messages">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <br>
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+<div class="container">
+    <div class="contenedor_tablas">
+        <img src="/static/img/logo_Programming JM.png" class="img_logo">
+        <h1 class="titulos">Mostrar clientes</h1>
+        <table class="table table-striped table-inverse table-responsive">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>id_cliente</th>
+                    <th>Nombre</th>
+                    <th>razon social</th>
+                    <th>nit</th>
+                    <th>direccion</th>
+                    <th>ciudad</th>
+                    <th>email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dato in datos %}
+                <tr>
+                    <td>{{dato.0}}</td>
+                    <td>{{dato.1}}</td>
+                    <td>{{dato.2}}</td>
+                    <td>{{dato.3}}</td>
+                    <td>{{dato.4}}</td>
+                    <td>{{dato.5}}</td>
+                    <td>{{dato.6}}</td>
+                    <td>
+                        <a href="/eliminar_cliente/{{dato.0}}">
+                            <img src="/static/icon/eliminar.svg">
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}
