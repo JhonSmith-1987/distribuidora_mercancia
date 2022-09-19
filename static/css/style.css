@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.imagen{
+    padding-top: 150px;
+}
+
+.titulos{
+    color: rgba(14, 14, 218, 0.925);
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.img_logo{
+    display: block;
+    margin: auto;
+    border-radius: 100%;
+}
+
+.nuevo_producto{
+    margin-top: 50px;
+    width: 50%;
+    margin: auto;
+}
+
+.btn{
+    display: block;
+    width: auto;
+    margin: auto;
+}

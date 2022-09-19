@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Create products</title>{% endblock %}
+
+{% block style %}<link rel="stylesheet" href="/static/css/style.css">{% endblock %}
+
+
+{% block body %}
+
+<div class="messages">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <br>
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+</div>
+<div class="nuevo_producto">
+    <img src="/static/img/logo_Programming JM.png" class="img_logo">
+    <h1 class="titulos">Create products</h1>
+    <form action="/insertar_producto" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="nombre">
+        </div>
+        <div class="form-group">
+          <label for="color">Color</label>
+          <select class="form-control" name="color" id="color">
+            <option value="blanco">Blanco</option>
+            <option value="negro">Negro</option>
+            <option value="azul">Azul</option>
+            <option value="rojo">Rojo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gama">Gama</label>
+          <select class="form-control" name="gama" id="gama">
+            <option value="baja">Baja</option>
+            <option value="media">Media</option>
+            <option value="alta">Alta</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="precio_costo">Precio costo</label>
+            <input type="number" class="form-control" name="precio_costo" id="precio_costo">
+        </div>
+        <div class="form-group">
+            <label for="precio_venta">Precio venta</label>
+            <input type="number" class="form-control" name="precio_venta" id="precio_venta">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="file">Imagen</label>
+          <input type="file" class="form-control-file" name="file" id="file">
+        </div>
+        <br>
+        <input type="submit" class="btn btn-primary" value="Ingresar">
+        <br>
+    </form>
+</div>
+
+{% endblock %}
