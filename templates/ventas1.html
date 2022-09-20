@@ -1,0 +1,116 @@
+{% extends 'layout.html' %}
+
+{% block title %}<title>Ventas</title>{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/css/style.css">{% endblock %}
+
+
+{% block body %}
+
+<div class="messages">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <br>
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+
+
+
+<div class="container">
+    <div class="ventas">
+        <h1 class="titulos">Facutura de venta</h1>
+        <div class="row">
+            <div class="col-6">
+                <p class="parrafos">nombre: <span>{{datos.1}}</span></p>
+                <p class="parrafos">Razon social: <span>{{datos.2}}</span></p>
+                <p class="parrafos">direccion: <span>{{datos.4}}</span></p>
+            </div>
+            <div class="col-6">
+                <p class="parrafos">fecha: <span>{{fecha}}</span></p>
+                <p class="parrafos">nit: <span>{{datos.3}}</span></p>
+            </div>
+        </div>
+        <div class="container">
+            <form action="/ingresar_venta" method="POST">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped table-inverse table-responsive">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Cantidad</th>
+                                <th>Descripcion</th>
+                                <th>Valor unidad</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                      <input type="number" class="form-control" name="cantidad"> 
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                      <select class="form-control" name="descripcion">
+                                        {% for NP in nombre_productos %}
+                                        <option value="{{NP.0}}">{{NP.0}}</option>
+                                        {% endfor %}
+                                      </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control" name="valor_unit"> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tipo de pago</td>
+                                <td>
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="tipo_de_pago"
+                                            value="contado">
+                                        Contado
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="tipo_de_pago"
+                                            value="credito">
+                                        Credito
+                                    </label>
+                                </td>
+                                <td><input type="submit" class="btn btn-primary" value="ingresar venta"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="subtotal">
+                        <p class="parrafos">Sub total</p>
+                    </div>
+                    <div class="iva">
+                        <p class="parrafos">Iva</p>
+                    </div>
+                    <div class="total">
+                        <p class="parrafos">Total</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

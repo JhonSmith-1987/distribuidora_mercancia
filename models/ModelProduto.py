@@ -5,13 +5,14 @@ class ModelProduto:
         try:
             cursor = db.connection.cursor()
             sql = """INSERT INTO producto 
-                        (nombre, color, gama, precio_costo, precio_venta, imagen) 
-                        VALUES (%s, %s, %s, %s, %s, %s)
+                        (nombre, color, gama, cantidad, precio_costo, precio_venta, imagen) 
+                        VALUES (%s, %s, %s, %s, %s, %s, %s)
                  """
             values = (
                       producto.nombre,
                       producto.color,
                       producto.gama,
+                      producto.cantidad,
                       producto.precio_costo,
                       producto.precio_venta,
                       producto.imagen

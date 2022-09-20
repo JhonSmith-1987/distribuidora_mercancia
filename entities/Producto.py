@@ -1,10 +1,11 @@
 class Producto:
 
-    def __init__(self, nombre, color, gama, precio_costo, precio_venta, imagen):
+    def __init__(self, nombre, color, gama, cantidad, precio_costo, precio_venta, imagen):
 
         self.nombre = nombre
         self.color = color
         self.gama = gama
+        self.cantidad = cantidad
         self.precio_costo = precio_costo
         self.precio_venta = precio_venta
         self.imagen = imagen
@@ -15,6 +16,7 @@ class Producto:
                 nombre: {self.nombre}
                 color: {self.color}
                 gama: {self.gama}
+                cantidad: {self.cantidad}
                 precio de costo: {self.precio_costo}
                 precio de venta: {self.precio_venta}
                 imagen: {self.imagen}

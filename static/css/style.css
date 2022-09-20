@@ -15,6 +15,21 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.parrafos{
+    color: rgb(30, 53, 126);
+    margin-left: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+}
+
+span{
+    color: rgb(24, 138, 184);
+    margin-left: 35px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    border-bottom: 1px rgb(24, 138, 184) solid;
+}
+
 .img_logo{
     display: block;
     margin: auto;
@@ -41,4 +56,19 @@
 
 .colores{
     color: rgb(245, 1, 1);
+}
+
+.ventas{
+    width: auto;
+    background-color: rgba(177, 177, 177, 0.521);
+    margin: 15px;
+}
+
+.subtotal, .iva, .total{
+    width: 40%;
+    margin: auto;
+}
+
+.form-check-label{
+    margin-left: 30px;
 }
