@@ -12,8 +12,9 @@ from models.ModelProduto import ModelProduto
 from models.ModelCliente import ModelCliente
 from models.ModelProvedor import ModelProvedor
 from models.ModelVentas import ModelVentas
+from models.ModelCompras import ModelCompras
 from models.ModelTablaTemporal import ModelTablaTemporal
-
+from models.ModelPuc import ModelPuc
 
 # Entities:
 from entities.Producto import Producto
@@ -23,10 +24,9 @@ from entities.Compras import Compras
 from entities.Ventas import Ventas
 from entities.TablaTemporal import TablaTemporal
 
-
-
 app = Flask(__name__)
 db = MySQL(app)
+fecha = date.today()
 
 
 @app.route('/')
@@ -184,9 +184,14 @@ def ingresarVenta():
 # ******************************** COMPRAS *****************************
 @app.route('/compras')
 def Compras():
-    datos = ModelProvedor.mostrarProvedor(db)
+    provedores = ModelProvedor.mostrarProvedor(db)
     nombre_productos = ModelVentas.seleccionarNombreProductos(db)
-    return render_template('compras1.html', datos=datos, nombre_productos=nombre_productos)
+    suma_total = int(ModelVentas.mostrarSumaTotalCompra(db))
+    iva = round(suma_total * 0.19)
+    total = suma_total + iva
+    print(provedores)
+    return render_template('compras1.html', provedores=provedores, total=total, iva=iva,
+                           nombre_productos=nombre_productos, suma_total=suma_total)
 
 
 @app.route('/ingresar_compra', methods=['POST'])
@@ -200,6 +205,52 @@ def ingresarCompra():
         ModelTablaTemporal.insertDatosTablaTemp(db, dato_tabla_temp)
         flash('compra agregada correctamente')
         return redirect(url_for('Compras'))
+
+
+@app.route('/ver_guardar_compras/<id>')
+def verGuardarCompras(id):
+    datos_prov = ModelVentas.mostrardatosCompra(db, id)
+    datos_compra = ModelTablaTemporal.mostrarTablaTemporal(db)
+    suma_total = int(ModelVentas.mostrarSumaTotalCompra(db))
+    iva = round(suma_total * 0.19)
+    total = suma_total + iva
+    id_provedor = int(datos_prov[0])
+    compra = Compras(id_provedor, fecha, sub_total=suma_total, iva=iva, total=total)
+    ModelCompras.insertarCompra(db, compra)
+    print(datos_prov)
+    return render_template('compras.html', suma_total=suma_total, iva=iva, total=total, datos_prov=datos_prov, fecha=fecha, datos_compra=datos_compra)
+
+
+# ******************************** PUC *****************************
+@app.route('/crear_puc')
+def crearPuc():
+    return render_template('crear_puc.html')
+
+
+@app.route('/guardar_puc', methods=['POST'])
+def guardarPuc():
+    if request.method == 'POST':
+        cuenta = request.form['cuenta']
+        codigo = request.form['codigo']
+        ModelPuc.insertarPuc(db, cuenta, codigo)
+        ModelPuc.crearTablasPuc(db, cuenta)
+        flash('dato guardado en el puc y cuenta creada')
+        return redirect(url_for('crearPuc'))
+    else:
+        flash('no guardo, revisar')
+        return redirect(url_for('crearPuc'))
+
+
+@app.route('/mostrar_puc')
+def mostrarPuc():
+    datos = ModelPuc.mostrarPuc(db)
+    return render_template('mostrar_puc.html', datos=datos)
+
+
+@app.route('/mostrar_tabla_puc/<tabla>')
+def mostrarTablaPuc(tabla):
+    datos = ModelPuc.mostrarTablaPuc(db, tabla)
+    return render_template('mostrar_tabla_puc.html', tabla=tabla, datos=datos)
 
 
 # ******************************** MANEJO DE ERRORES *****************************

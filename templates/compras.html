@@ -21,33 +21,81 @@
     {% endwith %}
 </div>
 <div class="container">
-    <div class="contenedor_tablas">
+    <div class="ventas">
         <img src="/static/img/logo_Programming JM.png" class="img_logo">
-        <h1 class="titulos">Compras/Provedores</h1>
-        <table class="table table-striped table-inverse table-responsive">
-            <thead class="thead-inverse">
-                <tr>
-                    <th>Nombre provedor</th>
-                    <th>razon social</th>
-                    <th>nit</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for dato in datos %}
-                <tr>                   
-                    <td>{{dato.1}}</td>
-                    <td>{{dato.2}}</td>
-                    <td>{{dato.3}}</td>
-                    <td>
-                        <a href="/compras1/{{dato.0}}">
-                            Ir a la compra
-                        </a>
-                    </td>   
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <h1 class="titulos">Factura de compra</h1>
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4">
+                        <p>Nombre provedor</p>
+                        <p>Razon social</p>
+                        <p>Direccion</p>
+                    </div>
+                    <div class="col-8">
+                        <p>{{datos_prov.1}}</p>
+                        <p>{{datos_prov.2}}</p>
+                        <p>{{datos_prov.4}}</p>
+                    </div>
+                </div>        
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4">
+                        <p>Fecha</p>
+                        <p>Nit</p>
+                    </div>
+                    <div class="col-8">
+                        <p>{{fecha}}</p>
+                        <p>{{datos_prov.3}}</p>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Cantidad</th>
+                                <th>Descripcion</th>
+                                <th>valor</th>
+                                <th>valor total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for datocompra in datos_compra %}
+                            <tr>
+                                <td>{{datocompra.1}}</td>
+                                <td>{{datocompra.2}}</td>
+                                <td>{{datocompra.3}}</td>
+                                <td>{{datocompra.4}}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Sub total</td>
+                                <td>{{suma_total}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Iva</td>
+                                <td>{{iva}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td>{{total}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

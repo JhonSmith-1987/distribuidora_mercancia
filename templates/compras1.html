@@ -75,18 +75,32 @@
             <div class="row">
                 <div class="col-12">
                     <div class="subtotal">
-                        <p class="parrafos">Sub total</p>
+                        <p class="parrafos">Sub total: <span>{{suma_total}}</span></p>
                     </div>
                     <div class="iva">
-                        <p class="parrafos">Iva</p>
+                        <p class="parrafos">Iva: <span>{{iva}}</span></p>
                     </div>
                     <div class="total">
-                        <p class="parrafos">Total</p>
+                        <p class="parrafos">Total: <span>{{total}}</span></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>provedores</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prov in provedores %}
+            <tr>
+                <td><a href="/ver_guardar_compras/{{prov.0}}">{{prov.2}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>       
 </div>
 
 {% endblock %}

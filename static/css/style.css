@@ -9,6 +9,7 @@
 }
 
 .titulos{
+    margin-top: 25px;
     color: rgba(14, 14, 218, 0.925);
     text-align: center;
     font-size: 35px;
@@ -72,3 +73,15 @@ span{
 .form-check-label{
     margin-left: 30px;
 }
+
+.terminar{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.select_prov{
+    width: 50%;
+    margin: auto;
+}
+

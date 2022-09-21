@@ -39,7 +39,7 @@ class ModelCliente:
     def eliminarCliente(cls, db, id):
         try:
             cursor = db.connection.cursor()
-            sql = 'DELETE FROM clientes WHERE id_cliente={}'.format(id)
+            sql = 'DELETE FROM clientes WHERE id_provedor={}'.format(id)
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:

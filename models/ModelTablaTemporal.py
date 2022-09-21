@@ -18,3 +18,17 @@ class ModelTablaTemporal:
             db.connection.commit()
         except Exception as ex:
             raise Exception(ex)
+
+    @classmethod
+    def mostrarTablaTemporal(cls, db):
+        try:
+            cursor = db.connection.cursor()
+            sql = 'SELECT * FROM tabla_temporal'
+            cursor.execute(sql)
+            data = cursor.fetchall()
+            if data != None:
+                return data
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
